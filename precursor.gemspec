@@ -15,4 +15,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version  = '~> 3.0'
 
   spec.files                  = FileList['lib/**/*.rb'].to_a
+
+  spec.add_development_dependency 'debug'
 end
