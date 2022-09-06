@@ -2,8 +2,9 @@
 
 module Precursor
   class ConfigRoot
-    def initialize(vaults)
+    def initialize(vaults, key_options)
       @vaults = vaults
+      @key_options = key_options
     end
 
     def [](key)
@@ -15,6 +16,11 @@ module Precursor
           value = v.value key
           break
         end
+      end
+
+      if !found && @key_options.key?(key) && @key_options[key].key?(:default)
+        found = true
+        value = @key_options[key][:default]
       end
 
       raise KeyError, "key #{key} not found" unless found
