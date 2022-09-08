@@ -10,12 +10,10 @@ module Precursor
       @yaml = flat_hash(YAML.load(src))
     end
 
-    def key?(key)
-      @yaml.key? key
-    end
+    protected
 
-    def value(key)
-      @yaml[key]
+    def store
+      @yaml
     end
 
     private

@@ -18,12 +18,10 @@ module Precursor
       end
     end
 
-    def key?(key)
-      @env_vars.key? key
-    end
+    protected
 
-    def value(key)
-      @env_vars[key]
+    def store
+      @env_vars
     end
   end
 end
