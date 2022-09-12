@@ -9,7 +9,7 @@ override_vault = Precursor::OverrideVault.new
 config = Precursor.create do |builder|
   builder.vault override_vault
 
-  builder.key :'key_with_default' do |key_builder|
+  builder.key :key_with_default do |key_builder|
     key_builder.default 42
   end
 end

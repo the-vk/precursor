@@ -16,6 +16,7 @@ module Precursor
     end
 
     protected
+
     # Replace this method in descendant classes to return Hash-like store
     def store
       {}

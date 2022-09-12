@@ -11,11 +11,11 @@ module Precursor
       found = false
       value = nil
       @vaults.each do |v|
-        if v.key? key
-          found = true
-          value = v.value key
-          break
-        end
+        next unless v.key? key
+
+        found = true
+        value = v.value key
+        break
       end
 
       if !found && @key_options.key?(key) && @key_options[key].key?(:default)

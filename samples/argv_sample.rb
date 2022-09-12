@@ -9,7 +9,7 @@ config = Precursor.create do |builder|
     kb.default false
   end
 
-  builder.vault (Precursor::ArgvVault.new(argv) do |v|
+  builder.vault(Precursor::ArgvVault.new(argv) do |v|
     v.key :'db.provider' do |kv|
       kv.long '--db-provider=DBPROVIDER'
       kv.description 'DB provider name'
