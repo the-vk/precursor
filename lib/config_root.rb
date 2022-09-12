@@ -24,7 +24,25 @@ module Precursor
       end
 
       raise KeyError, "key #{key} not found" unless found
+
+      value = resolve_variables(value) if value.is_a? String
+
       value
+    end
+
+    private
+
+    VAR_PATTERN = /\$\{(?<var_name>[a-zA-Z]+[\w.]+)\}/
+    MAX_DEPTH = 16
+
+    def resolve_variables(str)
+      res = str
+      until (m = res.match(VAR_PATTERN)).nil?
+        k = m[1]
+        v = self[k.to_sym]
+        res = res.sub("${#{k}}", v.to_s)
+      end
+      res
     end
   end
 end
