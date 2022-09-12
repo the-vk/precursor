@@ -27,7 +27,7 @@ module Precursor
           { k => v }
         end
       end
-      flat_hash.reduce(:merge).transform_keys { |k| k.to_sym }
+      flat_hash.reduce(:merge).transform_keys(&:to_sym)
     end
   end
 end
