@@ -19,4 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'optparse', '~> 0.2.0'
 
   spec.add_development_dependency 'debug'
+  spec.add_development_dependency 'rubocop'
 end
