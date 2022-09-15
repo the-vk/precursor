@@ -9,6 +9,7 @@ require_relative 'override_vault'
 require_relative 'thread_local_override_vault'
 require_relative 'yaml_vault'
 
+# Entry point to Precursor
 module Precursor
   class << self
     # Creates a new instance of [Precursor::ConfigRoot]

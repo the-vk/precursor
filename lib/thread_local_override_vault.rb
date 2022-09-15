@@ -3,6 +3,7 @@
 require_relative 'override_vault'
 
 module Precursor
+  # Extension of [Precursor::OverrideVault] that stored data in thread-local variable
   class ThreadLocalOverrideVault < OverrideVault
     protected
 

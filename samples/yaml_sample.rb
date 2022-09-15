@@ -7,7 +7,7 @@ require 'set'
 require_relative '../lib/precursor'
 
 config_src = <<~YAML_CONFIG
-  key_1: abc
+  key1: abc
   key_a:
     abc: 123
     def: 234
@@ -22,6 +22,6 @@ config = Precursor.create do |builder|
   builder.vault Precursor::YamlVault.new(config_src)
 end
 
-pp config[:key_1]
+pp config[:key1]
 pp config[:'key_a.abc']
 pp config[:'key_a.def']

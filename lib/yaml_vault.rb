@@ -5,9 +5,11 @@ require 'yaml'
 require_relative 'vault'
 
 module Precursor
+  # Vault that reads config data from a string with Yaml
   class YamlVault < Vault
     def initialize(src)
-      @yaml = flat_hash(YAML.load(src))
+      super()
+      @yaml = flat_hash(YAML.safe_load(src))
     end
 
     protected

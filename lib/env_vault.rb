@@ -9,12 +9,13 @@ module Precursor
     # @param separator [String] separator for hierarchical config entries
     # @param allow_list [Array<String>] list of allowed env vars to prevent leaking of sensitive or unrelated vars
     def initialize(separator: '__', allow_list: [])
-      @separator = '__'
+      super()
+      @separator = separator
 
       allow_set = Set.new(allow_list)
 
-      @env_vars = ENV.select { |n, _| allow_set.empty? || allow_set.include?(n) }.to_h do |name, value|
-        [name.sub(@separator, '.').to_sym, value]
+      @env_vars = ENV.select { |n, _| allow_set.empty? || allow_set.include?(n) }.transform_keys do |name|
+        name.sub(@separator, '.').to_sym
       end
     end
 

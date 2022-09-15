@@ -11,6 +11,8 @@ module Precursor
   # Vault that parses command line arguments
   class ArgvVault < Vault
     def initialize(argv)
+      super()
+
       @vault_data = {}
       @parser = OptionParser.new do |parser|
         parser.on('-h', '--help', 'Prints this help') do
@@ -34,6 +36,7 @@ module Precursor
       @vault_data
     end
 
+    # A builder to configure ArgvVault key options
     class ArgvKeyBuilder
       def initialize(key_name)
         @key_name = key_name

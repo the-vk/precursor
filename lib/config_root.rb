@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Precursor
+  # Root class to access config vaults
   class ConfigRoot
     def initialize(vaults, key_options)
       @vaults = vaults
@@ -8,32 +9,25 @@ module Precursor
     end
 
     def [](key)
-      found = false
-      value = nil
-      @vaults.each do |v|
-        next unless v.key? key
+      key_vault = @vaults.find { |v| v.key? key }
 
-        found = true
-        value = v.value key
-        break
-      end
+      value = key_vault.value key unless key_vault.nil?
+      value = get_default(key) if key_vault.nil?
 
-      if !found && @key_options.key?(key) && @key_options[key].key?(:default)
-        found = true
-        value = @key_options[key][:default]
-      end
-
-      raise KeyError, "key #{key} not found" unless found
-
-      value = resolve_variables(value) if value.is_a? String
-
-      value
+      value.is_a?(String) ? resolve_variables(value) : value
     end
 
     private
 
     VAR_PATTERN = /\$\{(?<var_name>[a-zA-Z]+[\w.]+)\}/
     MAX_DEPTH = 16
+
+    def get_default(key)
+      has_default = @key_options.key?(key) && @key_options[key].key?(:default)
+      raise KeyError, "key #{key} not found" unless has_default
+
+      @key_options[key][:default]
+    end
 
     def resolve_variables(str)
       res = str

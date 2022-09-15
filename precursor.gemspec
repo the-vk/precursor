@@ -13,8 +13,11 @@ Gem::Specification.new do |spec|
   spec.email                  = ['the_vk@thevk.net']
   spec.license                = 'MIT'
   spec.required_ruby_version  = '~> 3.0'
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 
-  spec.files                  = FileList['lib/**/*.rb'].to_a
+  spec.files = FileList['lib/**/*.rb'].to_a
 
   spec.add_dependency 'optparse', '~> 0.2.0'
 

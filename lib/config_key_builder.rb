@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Precursor
+  # A builder to provide Precursor key options
   class ConfigKeyBuilder
     def initialize
       @key_options = {}

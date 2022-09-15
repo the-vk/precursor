@@ -4,6 +4,7 @@ require_relative 'config_key_builder'
 require_relative 'config_root'
 
 module Precursor
+  # A builder to set up Precurcor
   class ConfigRootBuilder
     def initialize
       @vaults = []
