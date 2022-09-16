@@ -5,8 +5,8 @@ require_relative 'vault'
 module Precursor
   # Vault that stores data in hash and allows to override config on the fly
   class OverrideVault < Vault
-    def initialize
-      super()
+    def initialize(priority:)
+      super(priority: priority)
       @vault_data = {}
     end
 

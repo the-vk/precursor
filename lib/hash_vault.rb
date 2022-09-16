@@ -5,8 +5,8 @@ require_relative 'vault'
 module Precursor
   # Vault that reads config data from passed hash
   class HashVault < Vault
-    def initialize(hash)
-      super()
+    def initialize(hash, priority:)
+      super(priority: priority)
       @store = hash
     end
 

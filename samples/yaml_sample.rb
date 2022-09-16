@@ -19,7 +19,7 @@ config_src = <<~YAML_CONFIG
 YAML_CONFIG
 
 config = Precursor.create do |builder|
-  builder.vault Precursor::YamlVault.new(config_src)
+  builder.vault Precursor::YamlVault.new(config_src, priority: 0)
 end
 
 pp config[:key1]

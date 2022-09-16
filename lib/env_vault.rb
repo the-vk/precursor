@@ -8,8 +8,8 @@ module Precursor
     # Initializes new instance of [EnvVault]
     # @param separator [String] separator for hierarchical config entries
     # @param allow_list [Array<String>] list of allowed env vars to prevent leaking of sensitive or unrelated vars
-    def initialize(separator: '__', allow_list: [])
-      super()
+    def initialize(priority:, separator: '__', allow_list: [])
+      super(priority: priority)
       @separator = separator
 
       allow_set = Set.new(allow_list)

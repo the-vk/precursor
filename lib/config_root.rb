@@ -4,7 +4,7 @@ module Precursor
   # Root class to access config vaults
   class ConfigRoot
     def initialize(vaults, key_options)
-      @vaults = vaults
+      @vaults = vaults.sort_by(&:priority).reverse
       @key_options = key_options
     end
 
@@ -15,6 +15,10 @@ module Precursor
       value = get_default(key) if key_vault.nil?
 
       value.is_a?(String) ? resolve_variables(value) : value
+    end
+
+    def add_vault(vault)
+      @vaults = @vaults.push(vault).sort_by(&:priority).reverse
     end
 
     private

@@ -12,7 +12,7 @@ config = Precursor.create do |builder|
     con_str: '${db.protocol}://${db.host}/${db.name}'
   }
 
-  builder.vault(Precursor::HashVault.new(config_hash))
+  builder.vault(Precursor::HashVault.new(config_hash, priority: 0))
 end
 
 pp config[:con_str]

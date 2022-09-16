@@ -3,6 +3,15 @@
 module Precursor
   # Base class for config vaults
   class Vault
+    # Priority of the vault. Vaults with higher priority are checked first when looking for config value
+    attr_reader :priority
+
+    # Initializes new instance of [Precursor::Vault]
+    # @param priority [Integer] the vault priority
+    def initialize(priority:)
+      @priority = priority
+    end
+
     # Returns true if the vault has a value for the given key, otherwise false
     # @return [Boolean] true if the vault has a value for the given key, otherwise false
     def key?(key)

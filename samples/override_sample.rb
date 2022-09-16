@@ -6,9 +6,10 @@ require 'set'
 
 require_relative '../lib/precursor'
 
-override_vault = Precursor::OverrideVault.new
+override_vault = Precursor::OverrideVault.new(priority: 1000)
 
 config = Precursor.create do |builder|
+  builder.vault Precursor::EnvVault.new(priority: 0)
   builder.vault override_vault
 
   builder.key :key_with_default do |key_builder|
