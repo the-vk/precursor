@@ -8,6 +8,7 @@ require_relative 'hash_vault'
 require_relative 'override_vault'
 require_relative 'thread_local_override_vault'
 require_relative 'yaml_vault'
+require_relative 'yaml_file_vault'
 
 # Entry point to Precursor
 module Precursor
