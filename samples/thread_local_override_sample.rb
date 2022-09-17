@@ -6,7 +6,7 @@ require 'set'
 
 require_relative '../lib/precursor'
 
-override_vault = Precursor::ThreadLocalOverrideVault.new(priority: 0)
+override_vault = Precursor::ThreadLocalOverrideVault.new
 
 config = Precursor.create do |builder|
   builder.vault override_vault

@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'vault'
+require_relative 'hash_vault'
 
 module Precursor
   # Vault that stores data in hash and allows to override config on the fly
   class OverrideVault < Vault
-    def initialize(priority:)
-      super(priority: priority)
-      @vault_data = {}
+    def initialize(hash = {})
+      super(hash)
     end
 
     def override(key, value)
@@ -16,12 +15,6 @@ module Precursor
 
     def clear(key)
       store.delete(key)
-    end
-
-    protected
-
-    def store
-      @vault_data
     end
   end
 end

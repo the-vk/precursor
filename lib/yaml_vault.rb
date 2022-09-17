@@ -7,15 +7,15 @@ require_relative 'vault'
 module Precursor
   # Vault that reads config data from a string with Yaml
   class YamlVault < Vault
-    def initialize(src, priority:)
-      super(priority: priority)
-      @yaml = flat_hash(YAML.safe_load(src))
+    def initialize(yaml)
+      super()
+      @yaml = yaml
     end
 
     protected
 
-    def store
-      @yaml
+    def load_store(_config_root)
+      flat_hash(YAML.safe_load(@yaml))
     end
 
     private

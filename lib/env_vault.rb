@@ -8,21 +8,19 @@ module Precursor
     # Initializes new instance of [EnvVault]
     # @param separator [String] separator for hierarchical config entries
     # @param allow_list [Array<String>] list of allowed env vars to prevent leaking of sensitive or unrelated vars
-    def initialize(priority:, separator: '__', allow_list: [])
-      super(priority: priority)
+    def initialize(separator: '__', allow_list: [])
+      super()
       @separator = separator
 
-      allow_set = Set.new(allow_list)
-
-      @env_vars = ENV.select { |n, _| allow_set.empty? || allow_set.include?(n) }.transform_keys do |name|
-        name.sub(@separator, '.').to_sym
-      end
+      @allow_set = Set.new(allow_list)
     end
 
     protected
 
-    def store
-      @env_vars
+    def load_store(_config_root)
+      ENV.select { |n, _| @allow_set.empty? || @allow_set.include?(n) }.transform_keys do |name|
+        name.sub(@separator, '.').to_sym
+      end
     end
   end
 end

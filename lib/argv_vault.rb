@@ -10,9 +10,10 @@ require_relative 'vault'
 module Precursor
   # Vault that parses command line arguments
   class ArgvVault < Vault
-    def initialize(argv, priority:)
-      super(priority: priority)
+    def initialize(argv)
+      super()
 
+      @argv = argv
       @vault_data = {}
       @parser = OptionParser.new do |parser|
         parser.on('-h', '--help', 'Prints this help') do
@@ -21,7 +22,6 @@ module Precursor
         end
       end
       yield self
-      @parser.parse(argv)
     end
 
     def key(key_name)
@@ -32,7 +32,8 @@ module Precursor
 
     protected
 
-    def store
+    def load_store(_config_root)
+      @parser.parse(@argv)
       @vault_data
     end
 

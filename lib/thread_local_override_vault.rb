@@ -8,7 +8,7 @@ module Precursor
     protected
 
     def store
-      Thread.current[:precursor_override_vault] ||= {}
+      Thread.current[:precursor_override_vault] ||= @store
     end
   end
 end

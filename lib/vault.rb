@@ -3,13 +3,12 @@
 module Precursor
   # Base class for config vaults
   class Vault
-    # Priority of the vault. Vaults with higher priority are checked first when looking for config value
-    attr_reader :priority
+    attr_reader :store
 
-    # Initializes new instance of [Precursor::Vault]
-    # @param priority [Integer] the vault priority
-    def initialize(priority:)
-      @priority = priority
+    # Loads vault data from the source
+    # @param config_root [Precursor::ConfigRoot] A reference to config root to read values or resolve vars
+    def load(config_root)
+      @store = load_store(config_root)
     end
 
     # Returns true if the vault has a value for the given key, otherwise false
@@ -26,8 +25,7 @@ module Precursor
 
     protected
 
-    # Replace this method in descendant classes to return Hash-like store
-    def store
+    def load_store(_config_root)
       {}
     end
   end
