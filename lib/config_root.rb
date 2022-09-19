@@ -21,6 +21,13 @@ module Precursor
       value.is_a?(String) ? resolve(value) : value
     end
 
+    # Tests if config value exist for a given key
+    # @param key [Symbol] Config key
+    # return [Boolean] True if value exists; false otherwise
+    def key?(key)
+      @vaults.any? { |v| v.key? key }
+    end
+
     def resolve(str)
       res = str
       until (m = res.match(VAR_PATTERN)).nil?
