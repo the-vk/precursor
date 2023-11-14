@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.files = FileList['lib/**/*.rb'].to_a
 
-  spec.add_dependency 'optparse', '~> 0.2.0'
+  spec.add_dependency 'optparse', '~> 0.4.0'
 
   spec.add_development_dependency 'code-scanning-rubocop'
   spec.add_development_dependency 'debug'
